@@ -77,14 +77,18 @@ while end_program == "No":
                 if swimmer_name in swimmers:
                     if swimmer_name == swimmers[swimmer_name]["name"]:
                         if swimmers[swimmer_name]["status"] == "inactive":
-                            print("User already existed and status is updated to active.")
+                            print(
+                                "User already existed and status is updated to active."
+                            )
                             swimmers[swimmer_name]["status"] = "active"
                             pickle.dump(swimmers, open("data.pickle", "wb"))
                         else:
                             print("Status is already active.")
                 else:
                     # Add user data to the dictionary
-                    new_data = app_functions.add_user(swimmer_name, swimmer_gender, swimmer_age, swimmer_status)
+                    new_data = app_functions.add_user(
+                        swimmer_name, swimmer_gender, swimmer_age, swimmer_status
+                    )
                     swimmers[swimmer_name] = new_data
                     pickle.dump(swimmers, open("data.pickle", "wb"))
                     print(f"New user {swimmer_name} registered successfully.")
@@ -96,7 +100,9 @@ while end_program == "No":
                 if delete_swimmer in swimmers:
                     if swimmers[delete_swimmer]["status"] == "active":
                         swimmers[delete_swimmer]["status"] = "inactive"
-                        print(f"{delete_swimmer}'s status has been updated to inactive.")
+                        print(
+                            f"{delete_swimmer}'s status has been updated to inactive."
+                        )
                         pickle.dump(swimmers, open("data.pickle", "wb"))
                     else:
                         print(f"{delete_swimmer} is already inactive.")
@@ -121,7 +127,11 @@ while end_program == "No":
                         event_type = app_functions.getInput(
                             prompt="Enter 1 for Freestyle. \nEnter 2 for Backstroke. \nEnter 3 for Breaststroke. \nEnter 4 for Butterfly. \nEnter 5 for Individual Medley. \nEnter -> ",
                             cast=int,
-                            condition=lambda x: x == 1 or x == 2 or x == 3 or x == 4 or x == 5,
+                            condition=lambda x: x == 1
+                            or x == 2
+                            or x == 3
+                            or x == 4
+                            or x == 5,
                             errorMessage="You can only enter number from 1 to 5.",
                         )
                         if event_type == 1:
@@ -202,7 +212,9 @@ while end_program == "No":
                             elif meters == 400:
                                 events = f"{meters} Individual"
                         while True:
-                            swimmer_timming = input("Enter your simmer timming.(e.g., 1.03.56, 0.32.45): ")
+                            swimmer_timming = input(
+                                "Enter your simmer timming.(e.g., 1.03.56, 0.32.45): "
+                            )
                             hour, minute, second = swimmer_timming.split(".")
                             if hour == "" or minute == "" or second == "":
                                 print("You cannot leave blanks.")
@@ -219,7 +231,9 @@ while end_program == "No":
                             else:
                                 break
 
-                        meet = input("Enter the competition that this timing was achieved: ")
+                        meet = input(
+                            "Enter the competition that this timing was achieved: "
+                        )
                         record_swimmer_age = swimmers[record_swimmer]["age"]
                         post = app_functions.getInput(
                             prompt="Do you want to post it?(yes or no): ",
@@ -242,9 +256,13 @@ while end_program == "No":
                             swimmers[record_swimmer]["age"],
                             record_swimmer_status,
                         ]
-                        swimmers_record[record_swimmer + "#" + str(randrange(1, 1000))] = new_record_data
-                        pickle.dump(swimmers_record, open("record.pickle", "wb"))
-                        print(f"{record_swimmer}'s event registered successfully.")
+                        swimmers_record[
+                            record_swimmer + "#" + str(randrange(1, 1000))
+                        ] = new_record_data
+                        pickle.dump(swimmers_record, open(
+                            "record.pickle", "wb"))
+                        print(
+                            f"{record_swimmer}'s event registered successfully.")
 
                 else:
                     print("You need to register first.")
@@ -267,7 +285,11 @@ while end_program == "No":
             )
 
             if display_options == 1:
-                print("{0:21} {1:21} {2:21} {3:}".format("Name", "Gender", "Age", "Status"))
+                print(
+                    "{0:21} {1:21} {2:21} {3:}".format(
+                        "Name", "Gender", "Age", "Status"
+                    )
+                )
                 app_functions.loop_dic(swimmers)
             elif display_options == 2:
                 filter_events = app_functions.getInput(
@@ -302,7 +324,10 @@ while end_program == "No":
                         for index in swimmers_record:
                             if search_name in swimmers_record[index]:
                                 swimmers_record[index][6] = "Posted"
-                                pickle.dump(swimmers_record, open("record.pickle", "wb"))
+                                pickle.dump(
+                                    swimmers_record, open(
+                                        "record.pickle", "wb")
+                                )
                                 for value in swimmers_record[index]:
                                     print("{0:21}".format(value), end=" ")
                                 print("")
@@ -311,7 +336,10 @@ while end_program == "No":
                         for index in swimmers_record:
                             if search_name in swimmers_record[index]:
                                 swimmers_record[index][6] = "Unposted"
-                                pickle.dump(swimmers_record, open("record.pickle", "wb"))
+                                pickle.dump(
+                                    swimmers_record, open(
+                                        "record.pickle", "wb")
+                                )
                                 for value in swimmers_record[index]:
                                     print("{0:21}".format(value), end=" ")
                                 print("")
@@ -329,7 +357,10 @@ while end_program == "No":
                     )
                     for index in swimmers_record:
                         try:
-                            if search_name in swimmers_record[index] and search_event in swimmers_record[index]:
+                            if (
+                                search_name in swimmers_record[index]
+                                and search_event in swimmers_record[index]
+                            ):
                                 for value in swimmers_record[index]:
                                     print("{0:21}".format(value), end=" ")
                                 print("")
@@ -344,18 +375,30 @@ while end_program == "No":
 
                     if post == "Yes":
                         for index in swimmers_record:
-                            if search_name in swimmers_record[index] and search_event in swimmers_record[index]:
+                            if (
+                                search_name in swimmers_record[index]
+                                and search_event in swimmers_record[index]
+                            ):
                                 swimmers_record[index][6] = "Posted"
-                                pickle.dump(swimmers_record, open("record.pickle", "wb"))
+                                pickle.dump(
+                                    swimmers_record, open(
+                                        "record.pickle", "wb")
+                                )
                                 for value in swimmers_record[index]:
                                     print("{0:21}".format(value), end=" ")
                                 print("")
                         print("Posted successfully!")
                     else:
                         for index in swimmers_record:
-                            if search_name in swimmers_record[index] and search_event in swimmers_record[index]:
+                            if (
+                                search_name in swimmers_record[index]
+                                and search_event in swimmers_record[index]
+                            ):
                                 swimmers_record[index][6] = "Unposted"
-                                pickle.dump(swimmers_record, open("record.pickle", "wb"))
+                                pickle.dump(
+                                    swimmers_record, open(
+                                        "record.pickle", "wb")
+                                )
                                 for value in swimmers_record[index]:
                                     print("{0:21}".format(value), end=" ")
                                 print("")
