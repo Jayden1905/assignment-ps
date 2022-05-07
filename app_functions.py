@@ -8,6 +8,13 @@ def loop_dic(dic):
         print("")
 
 
+def loop_tuple(dic):
+    for index in dic:
+        for value in dic[index]:
+            print("{0:21}".format(value), end=" ")
+        print("")
+
+
 # Validate the input
 def getInput(prompt="", cast=None, condition=None, errorMessage=None):
     while True:
@@ -47,3 +54,8 @@ def add_user(name, gender, age, status):
         "status": status,
     }
     return new_data_set
+
+
+# Adding new records for users
+def add_record(name, gender, event, timming, meet, age, status):
+    new_record_set = [name, gender, event, timming, meet, age, status]
