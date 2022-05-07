@@ -54,8 +54,3 @@ def add_user(name, gender, age, status):
         "status": status,
     }
     return new_data_set
-
-
-# Adding new records for users
-def add_record(name, gender, event, timming, meet, age, status):
-    new_record_set = [name, gender, event, timming, meet, age, status]
