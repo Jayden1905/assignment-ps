@@ -284,30 +284,38 @@ while end_program == "No":
                         )
                     )
                     for index in swimmers_record:
-                        if search_name in swimmers_record[index]:
-                            for value in swimmers_record[index]:
-                                print("{0:21}".format(value), end=" ")
-                            print("")
-                            if swimmers_record[index][6] == "Unposted":
-                                change_post = app_functions.getInput(
-                                    prompt="Do you want to post it? (yes or no)",
-                                    condition=lambda x: x == "Yes" or x == "No",
-                                    errorMessage="You can only enter yes or no.",
-                                )
-                                if change_post == "Yes":
-                                    swimmers_record[index][6] = "Posted"
-                                    pickle.dump(swimmers_record, open("record.pickle", "wb"))
-                                    print("Posted successfully.")
-                                    for value in swimmers_record[index]:
-                                        print("{0:21}".format(value), end=" ")
-                                    print("")
-                                else:
-                                    print("Remain Unposted!")
-                                    for value in swimmers_record[index]:
-                                        print("{0:21}".format(value), end=" ")
-                                    print("")
-                            else:
-                                print("Your post is already posted.")
+                        try:
+                            if search_name in swimmers_record[index]:
+                                for value in swimmers_record[index]:
+                                    print("{0:21}".format(value), end=" ")
+                                print("")
+                        except:
+                            print("User not found.")
+
+                    post = app_functions.getInput(
+                        prompt="Do you want to post the unposted posts? (yes or no): ",
+                        condition=lambda x: x == "Yes" or x == "No",
+                        errorMessage="You can only enter yes or no.",
+                    )
+
+                    if post == "Yes":
+                        for index in swimmers_record:
+                            if search_name in swimmers_record[index]:
+                                swimmers_record[index][6] = "Posted"
+                                pickle.dump(swimmers_record, open("record.pickle", "wb"))
+                                for value in swimmers_record[index]:
+                                    print("{0:21}".format(value), end=" ")
+                                print("")
+                        print("Posted successfully!")
+                    else:
+                        for index in swimmers_record:
+                            if search_name in swimmers_record[index]:
+                                swimmers_record[index][6] = "Unposted"
+                                pickle.dump(swimmers_record, open("record.pickle", "wb"))
+                                for value in swimmers_record[index]:
+                                    print("{0:21}".format(value), end=" ")
+                                print("")
+                        print("Unposted successfully!")
 
                 elif filter_events == 2:
                     search_name = str
@@ -320,30 +328,38 @@ while end_program == "No":
                         )
                     )
                     for index in swimmers_record:
-                        if search_name in swimmers_record[index] and search_event in swimmers_record[index]:
-                            for value in swimmers_record[index]:
-                                print("{0:21}".format(value), end=" ")
-                            print("")
-                            if swimmers_record[index][6] == "Unposted":
-                                change_post = app_functions.getInput(
-                                    prompt="Do you want to post it? (yes or no)",
-                                    condition=lambda x: x == "Yes" or x == "No",
-                                    errorMessage="You can only enter yes or no.",
-                                )
-                                if change_post == "Yes":
-                                    swimmers_record[index][6] = "Posted"
-                                    pickle.dump(swimmers_record, open("record.pickle", "wb"))
-                                    print("Posted successfully.")
-                                    for value in swimmers_record[index]:
-                                        print("{0:21}".format(value), end=" ")
-                                    print("")
-                                else:
-                                    print("Remain Unposted!")
-                                    for value in swimmers_record[index]:
-                                        print("{0:21}".format(value), end=" ")
-                                    print("")
-                            else:
-                                print("Your post is already posted.")
+                        try:
+                            if search_name in swimmers_record[index] and search_event in swimmers_record[index]:
+                                for value in swimmers_record[index]:
+                                    print("{0:21}".format(value), end=" ")
+                                print("")
+                        except:
+                            print("Not found.")
+
+                    post = app_functions.getInput(
+                        prompt="Do you want to post the unposted posts? (yes or no): ",
+                        condition=lambda x: x == "Yes" or x == "No",
+                        errorMessage="You can only enter yes or no.",
+                    )
+
+                    if post == "Yes":
+                        for index in swimmers_record:
+                            if search_name in swimmers_record[index] and search_event in swimmers_record[index]:
+                                swimmers_record[index][6] = "Posted"
+                                pickle.dump(swimmers_record, open("record.pickle", "wb"))
+                                for value in swimmers_record[index]:
+                                    print("{0:21}".format(value), end=" ")
+                                print("")
+                        print("Posted successfully!")
+                    else:
+                        for index in swimmers_record:
+                            if search_name in swimmers_record[index] and search_event in swimmers_record[index]:
+                                swimmers_record[index][6] = "Unposted"
+                                pickle.dump(swimmers_record, open("record.pickle", "wb"))
+                                for value in swimmers_record[index]:
+                                    print("{0:21}".format(value), end=" ")
+                                print("")
+                        print("Unposted successfully!")
 
                 elif filter_events == 3:
                     print(
