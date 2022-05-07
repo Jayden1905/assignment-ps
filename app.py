@@ -267,15 +267,19 @@ while end_program == "No":
             )
 
             if display_options == 1:
+                # Display register data
                 print("{0:21} {1:21} {2:21} {3:}".format("Name", "Gender", "Age", "Status"))
                 app_functions.loop_dic(swimmers)
             elif display_options == 2:
+                # Display events data
                 filter_events = app_functions.getInput(
                     prompt="Enter 1 to filter by name. \nEnter 2 to filter by name and event name. \nEnter 3 to print all data. \nEnter -> ",
                     cast=int,
                     condition=lambda x: x == 1 or x == 2 or x == 3,
                 )
+                # Search method implementation
                 if filter_events == 1:
+                    # Search with name
                     search_name = str
                     search_name = app_functions.name_validate(search_name)
                     print(
@@ -291,7 +295,7 @@ while end_program == "No":
                                 print("")
                         except:
                             print("User not found.")
-
+                    # Posted and unposted
                     post = app_functions.getInput(
                         prompt="Do you want to post the unposted posts? (yes or no): ",
                         condition=lambda x: x == "Yes" or x == "No",
@@ -318,6 +322,7 @@ while end_program == "No":
                         print("Unposted successfully!")
 
                 elif filter_events == 2:
+                    # Search with name and event
                     search_name = str
                     search_name = app_functions.name_validate(search_name)
                     search_event = str
@@ -336,6 +341,7 @@ while end_program == "No":
                         except:
                             print("Not found.")
 
+                    # Posted and unposted
                     post = app_functions.getInput(
                         prompt="Do you want to post the unposted posts? (yes or no): ",
                         condition=lambda x: x == "Yes" or x == "No",
@@ -362,6 +368,7 @@ while end_program == "No":
                         print("Unposted successfully!")
 
                 elif filter_events == 3:
+                    # Display without filter
                     print(
                         "{0:21} {1:21} {2:21} {3:21} {4:21} {5:21} {6:}".format(
                             "Name", "Gender", "Event", "Time", "Meet", "Age", "Status"
