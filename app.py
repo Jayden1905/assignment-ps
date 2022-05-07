@@ -1,5 +1,5 @@
 from datetime import date
-import pickle
+import app_functions
 
 # Data set
 swimmers = {
@@ -17,58 +17,9 @@ swimmers = {
     },
 }
 
-# Loop throught the dictionary and output as a table
-def loop_dic(dic):
-    for index in dic:
-        for keys, values in dic[index].items():
-            print("{0:21}".format(values), end=" ")
-        print("")
-
-
-# Validate the input
-def getInput(prompt="", cast=None, condition=None, errorMessage=None):
-    while True:
-        try:
-            response = (cast or str)(input(prompt).capitalize())
-            assert condition is None or condition(response)
-            return response
-        except:
-            print(errorMessage or "Invalid Input!")
-
-
-# Name validation
-def name_validate(name):
-    while True:
-        name = input("Enter your name: ").title()
-        if all(x.isalpha() or x.isspace() for x in name):
-            return name
-            break
-        else:
-            print("Invalid name, you can only enter alphabets.")
-            continue
-
-
-# Calc age from date of birth
-def age(birthdate):
-    today = date.today()
-    age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
-    return age
-
-
-# Adding new users
-def add_user(name, gender, age, status):
-    new_data_set = {
-        "name": name,
-        "gender": gender,
-        "age": age,
-        "status": status,
-    }
-    return new_data_set
-
-
 end_program = "No"
 while end_program == "No":
-    options = getInput(
+    options = app_functions.getInput(
         prompt="Enter 1 for registeration. \nEnter 2 to print data. \nEnter -> ",
         cast=int,
         condition=lambda x: x == 1 or x == 2,
@@ -79,7 +30,7 @@ while end_program == "No":
         end_register = "No"
         while end_register == "No":
             # Divided the register into creating and deleting user
-            create_delete = getInput(
+            create_delete = app_functions.getInput(
                 prompt="Enter 1 to create user. \nEnter 2 to delete user. \nEnter -> ",
                 cast=int,
                 condition=lambda x: x == 1 or x == 2,
@@ -89,10 +40,10 @@ while end_program == "No":
                 # Registration process (creating new user)
                 # Name validated
                 swimmer_name = str
-                swimmer_name = name_validate(swimmer_name)
+                swimmer_name = app_functions.name_validate(swimmer_name)
 
                 # Gender validated
-                swimmer_gender = getInput(
+                swimmer_gender = app_functions.getInput(
                     prompt="Enter your gender: ",
                     condition=lambda x: x == "Male" or x == "Female" or x == "Others",
                     errorMessage="Only accept Male, Female and Others",
@@ -116,7 +67,7 @@ while end_program == "No":
                         break
 
                 # Calculate age
-                age = age(date(int(year), int(month), int(day)))
+                age = app_functions.age(date(int(year), int(month), int(day)))
                 swimmer_age = str(age)
 
                 # Status
@@ -131,21 +82,21 @@ while end_program == "No":
                             print("Status is already active.")
                 else:
                     # Add user data to the dictionary
-                    new_data = add_user(swimmer_name, swimmer_gender, swimmer_age, swimmer_status)
+                    new_data = app_functions.add_user(swimmer_name, swimmer_gender, swimmer_age, swimmer_status)
                     swimmers[swimmer_name] = new_data
                     print(f"New user {swimmer_name} registered successfully.")
 
             elif create_delete == 2:
                 # Deleting the searched user
                 delete_swimmer = str
-                delete_swimmer = name_validate(delete_swimmer)
+                delete_swimmer = app_functions.name_validate(delete_swimmer)
                 if swimmers[delete_swimmer]["status"] == "active":
                     swimmers[delete_swimmer]["status"] = "inactive"
                     print(f"{delete_swimmer}'s status has been updated to inactive.")
                 else:
                     print(f"{delete_swimmer} doesn't exist or already inactive.")
 
-            end_register = getInput(
+            end_register = app_functions.getInput(
                 prompt="Do you want to end the registeration?(Yes or No): ",
                 condition=lambda x: x == "Yes" or x == "No",
                 errorMessage="You can only enter Yes or No.",
@@ -154,9 +105,9 @@ while end_program == "No":
     elif options == 2:
         # Printing data
         print("{0:21} {1:21} {2:21} {3:}".format("Name", "Gender", "Age", "Status"))
-        loop_dic(swimmers)
+        app_functions.loop_dic(swimmers)
 
-    end_program = getInput(
+    end_program = app_functions.getInput(
         prompt="Do you want to end the program? (Yes or No): ",
         condition=lambda x: x == "Yes" or x == "No",
         errorMessage="You can only enter Yes or No.",
