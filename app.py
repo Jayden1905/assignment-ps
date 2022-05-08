@@ -121,9 +121,7 @@ while end_program == "No":
                         continue
                     else:
                         # Calculate age
-                        print(year, month, day)
                         calc_age = age(date(int(year), int(month), int(day)))
-                        print(calc_age)
                         swimmer_age = str(calc_age)
                         break
 
