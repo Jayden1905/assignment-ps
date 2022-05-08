@@ -1,7 +1,6 @@
 # Instructions
 
-There are two python files, one is main application and another one is for functions.
-Please run app.py file to run the application
+Please put app.py file, data.pickle file and record.pickle file in the same folder. Otherwise there will be no data in the offline database.
 
 # Command
 

@@ -441,3 +441,4 @@ while end_program == "No":
         condition=lambda x: x == "Yes" or x == "No",
         errorMessage="You can only enter yes or no.",
     )
+print("Thank you for using this application.")
