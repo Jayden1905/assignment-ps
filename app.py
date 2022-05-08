@@ -19,7 +19,7 @@ except (OSError, IOError) as e:
 end_program = "No"
 while end_program == "No":
     options = app_functions.getInput(
-        prompt="Enter 1 for registeration. \nEnter 2 to print data. \nEnter -> ",
+        prompt="Enter 1 for registration. \nEnter 2 to print data. \nEnter -> ",
         cast=int,
         condition=lambda x: x == 1 or x == 2,
         errorMessage="You can only enter 1 or 2.",
@@ -81,7 +81,7 @@ while end_program == "No":
                             swimmers[swimmer_name]["status"] = "active"
                             pickle.dump(swimmers, open("data.pickle", "wb"))
                         else:
-                            print("Status is already active.")
+                            print("User already exist and it's status is active.")
                 else:
                     # Add user data to the dictionary
                     new_data = app_functions.add_user(swimmer_name, swimmer_gender, swimmer_age, swimmer_status)
@@ -250,7 +250,7 @@ while end_program == "No":
                     print("You need to register first.")
 
             end_register = app_functions.getInput(
-                prompt="Do you want to end the registeration?(yes or no): ",
+                prompt="Do you want to end the registration?(yes or no): ",
                 condition=lambda x: x == "Yes" or x == "No",
                 errorMessage="You can only enter yes or no.",
             )
