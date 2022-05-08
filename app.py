@@ -59,10 +59,10 @@ while end_program == "No":
                         print("Year has to be less than 2022.")
                         continue
                     elif int(month) > 12:
-                        print("Month has to be less than 12.")
+                        print("Month has to be less than or equal 12.")
                         continue
                     elif int(day) > 31:
-                        print("Day has to be less than 31.")
+                        print("Day has to be less than or equal 31.")
                         continue
                     else:
                         break
@@ -211,10 +211,10 @@ while end_program == "No":
                                 print("Hour has to be less than 12.")
                                 continue
                             elif int(minute) > 60:
-                                print("Minute has to be less than 60.")
+                                print("Minute has to be less than or equal 60.")
                                 continue
                             elif int(second) > 60:
-                                print("Second has to be less than 30.")
+                                print("Second has to be less than or equal 30.")
                                 continue
                             else:
                                 break
