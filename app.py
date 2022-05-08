@@ -55,8 +55,8 @@ while end_program == "No":
                     if year == "" or month == "" or day == "":
                         print("You cannot leave balnks.")
                         continue
-                    elif int(year) > 2022:
-                        print("Year has to be less than 2022.")
+                    elif int(year) > 2021:
+                        print("Year has to be less than 2021.")
                         continue
                     elif int(month) > 12:
                         print("Month has to be less than or equal 12.")
