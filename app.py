@@ -74,9 +74,9 @@ except (OSError, IOError) as e:
 end_program = "No"
 while end_program == "No":
     options = getInput(
-        prompt="Enter 1 for registration. \nEnter 2 to print data. \nEnter -> ",
+        prompt="Enter 1 for registration. \nEnter 2 to print data.\nEnter 3 to quit the program. \nEnter -> ",
         cast=int,
-        condition=lambda x: x == 1 or x == 2,
+        condition=lambda x: x == 1 or x == 2 or x == 3,
         errorMessage="You can only enter 1 or 2.",
     )
     if options == 1:
@@ -330,6 +330,7 @@ while end_program == "No":
                     prompt="Enter 1 to filter by name. \nEnter 2 to filter by name and event name. \nEnter 3 to print all data. \nEnter -> ",
                     cast=int,
                     condition=lambda x: x == 1 or x == 2 or x == 3,
+                    errorMessage="You can only enter 1 or 2 or 3.",
                 )
                 # Search method implementation
                 if filter_events == 1:
@@ -435,10 +436,7 @@ while end_program == "No":
                 condition=lambda x: x == "Yes" or x == "No",
                 errorMessage="You can only enter yes or no.",
             )
+    elif options == 3:
+        break
 
-    end_program = getInput(
-        prompt="Do you want to end the program? (yes or no): ",
-        condition=lambda x: x == "Yes" or x == "No",
-        errorMessage="You can only enter yes or no.",
-    )
 print("Thank you for using this application.")
