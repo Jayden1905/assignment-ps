@@ -105,8 +105,8 @@ while end_program == "No":
 
                 # Date of birth validate
                 while True:
-                    inputDate = input("Enter the date of birth(YYYY/MM/DD): ")
-                    year, month, day = inputDate.split("/")
+                    inputDate = input("Enter the date of birth(YYYY-MM-DD): ")
+                    year, month, day = inputDate.split("-")
                     if year == "" or month == "" or day == "":
                         print("You cannot leave balnks.")
                         continue
